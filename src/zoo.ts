@@ -1,13 +1,30 @@
+
+import Enclos from './enclos';
+import Animal from './animal';
+
 export default class Zoo {
 
-    private name: string;
+    private _nom: string;
+    private _enclos: Enclos[];
 
-    constructor(name: string) {
-        console.log("constructing...");
-        this.name = name;
+    constructor(nom: string, enclos: Enclos[]) {
+        console.log("constructing..");
+        this._nom = nom;
+        this._enclos = enclos;
     }
 
-    toString(): string {
-        return this.name
+    nourrir():void {
+        this._enclos.forEach((enclos) => enclos.nourrir());
+    }
+
+    get animaux(): Animal[] {
+        let animaux: Animal[] = [];
+        this._enclos.forEach((enclos) => {
+            enclos.animaux.forEach((animal) => {
+                animaux.push(animal);
+            })
+        })
+
+        return animaux;
     }
 }

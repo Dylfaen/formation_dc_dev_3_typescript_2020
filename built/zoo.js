@@ -1,12 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Zoo {
-    constructor(name) {
-        console.log("constructing...");
-        this.name = name;
+    constructor(nom, enclos) {
+        console.log("constructing..");
+        this._nom = nom;
+        this._enclos = enclos;
     }
-    toString() {
-        return this.name;
+    nourrir() {
+        this._enclos.forEach((enclos) => enclos.nourrir());
+    }
+    get animaux() {
+        let animaux = [];
+        this._enclos.forEach((enclos) => {
+            enclos.animaux.forEach((animal) => {
+                animaux.push(animal);
+            });
+        });
+        return animaux;
     }
 }
 exports.default = Zoo;
